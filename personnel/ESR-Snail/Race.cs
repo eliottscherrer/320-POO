@@ -26,9 +26,15 @@ namespace ESR_Snail
         public void Start()
         {
             DrawFinishLine();
+            foreach (var participant in Participants)
+            {
+                participant.Draw();
+            }
+
             Countdown();
 
-            // Vider le buffer du clavier après le décompte
+            // Clear keyboard buffer before starting the race
+            // To avoid all the keypresses done during the countdown to be accepted
             while (Console.KeyAvailable)
             {
                 Console.ReadKey(true);
@@ -38,8 +44,8 @@ namespace ESR_Snail
             {
                 if (Console.KeyAvailable)
                 {
-                    var key = Console.ReadKey(true).Key;
-                    foreach (var participant in Participants)
+                    ConsoleKey key = Console.ReadKey(true).Key;
+                    foreach (Snail participant in Participants)
                     {
                         if (participant.MoveKey == key)
                         {
@@ -53,6 +59,7 @@ namespace ESR_Snail
             }
 
             ShowWinner();
+            Thread.Sleep(3000);
         }
 
         private void Countdown()
@@ -89,7 +96,7 @@ namespace ESR_Snail
             Console.SetCursorPosition(left, top + 3);
             Console.Write(bottomLeft + new string(horizontal, messageLength - PADDING) + bottomRight);
 
-            // Display "Prêt ?"
+            // Display "Prêt?"
             Console.SetCursorPosition(left + PADDING, top + 1);
             Console.Write(message);
 
@@ -97,8 +104,28 @@ namespace ESR_Snail
             for (int i = countdownSeconds; i > 0; i--)
             {
                 Console.SetCursorPosition(left + messageLength / 2, top + 2);
+
+                switch (i)
+                {
+                    case 3:
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        break;
+                    case 2:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        break;
+                    case 1:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        break;
+                }
+
                 Console.Write(i);
+
+                // Wait for keypresses then start the countdown
+                if (i == countdownSeconds)
+                    Console.ReadKey(true);
+
                 Thread.Sleep(1000);
+                Console.ResetColor();
             }
 
             // Display "GO!"
