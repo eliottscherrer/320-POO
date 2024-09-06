@@ -10,7 +10,7 @@ namespace ESR_Parachutes
     {
         public int X { get; private set; }
 
-        private string[] View =
+        public static readonly string[] View =
         {
             @" _                         ",
             @"| \                        ",
@@ -22,16 +22,19 @@ namespace ESR_Parachutes
 
         public void Update()
         {
-            Console.MoveBufferArea(X, 1, View[0].Length, View.Length, X + 1, 1);
+            for (int col = View[0].Length - 1; col >= 0; --col)
+            {
+                Console.MoveBufferArea((X + col) % Console.WindowWidth, 0, 1, View.Length, (X + col + 1) % Console.WindowWidth, 0);
+            }
 
-            X++;
+            X = (X + 1) % Console.WindowWidth;
         }
 
         public void Draw()
         {
-            for(int i = 0; i < View.Length; ++i)
+            for (int i = 0; i < View.Length; ++i)
             {
-                Console.SetCursorPosition(X, i + 1);
+                Console.SetCursorPosition(X, i);
                 Console.Write(View[i]);
             }
         }
