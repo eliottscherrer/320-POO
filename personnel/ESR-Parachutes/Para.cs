@@ -59,7 +59,7 @@ namespace ESR_Parachutes
             }
         }
 
-        public static string[] WithoutParachute =
+        public string[] WithoutParachute =
         {
             @"PLACEHOLDERNAME",
             @"  o  ",
@@ -67,7 +67,7 @@ namespace ESR_Parachutes
             @" / \ ",
         };
 
-        public static string[] WithParachute =
+        public string[] WithParachute =
         {
             @"PLACEHOLDERNAME",
             @" ___ ",
@@ -78,7 +78,7 @@ namespace ESR_Parachutes
             @" / \ ",
         };
 
-        public static string[] DeadBody =
+        public string[] DeadBody =
         {
             @"PLACEHOLDERNAME",
             @">---o"
