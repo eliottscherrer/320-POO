@@ -34,7 +34,7 @@ namespace ESR_Parachutes
                     case ParaState.DEAD:
                         return DeadBody;
                     default:
-                        return new string[] { "ERROR" };
+                        return new string[] { "ERROR", "ERROR", "ERROR", "ERROR", "ERROR", "ERROR" };
                 }
             }
         }
