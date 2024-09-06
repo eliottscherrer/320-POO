@@ -19,6 +19,16 @@ namespace ESR_Parachutes
 
             while (true)
             {
+                if(Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo cki = Console.ReadKey(false);
+                    switch(cki.Key)
+                    {
+                        case ConsoleKey.Escape:
+                            Environment.Exit(0);
+                            break;
+                    }
+                }
 
                 plane.Update();
 
