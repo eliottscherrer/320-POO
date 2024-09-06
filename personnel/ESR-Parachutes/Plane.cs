@@ -8,6 +8,8 @@ namespace ESR_Parachutes
 {
     public class Plane
     {
+        public int x { get; private set; }
+
         private string[] view =
         {
             @" _                         ",
@@ -18,5 +20,20 @@ namespace ESR_Parachutes
             @"        \_____|_____/   |  "
         };
 
+        public void Update()
+        {
+            Console.MoveBufferArea(x, 1, view[0].Length, view.Length, x + 1, 1);
+
+            x++;
+        }
+
+        public void Draw()
+        {
+            for(int i = 0; i < view.Length; ++i)
+            {
+                Console.SetCursorPosition(x, i + 1);
+                Console.Write(view[i]);
+            }
+        }
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace ESR_Parachutes
 {
@@ -12,7 +12,18 @@ namespace ESR_Parachutes
         {
             Console.SetWindowSize(Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
 
+            Console.CursorVisible = false;
 
+            Plane plane = new Plane();
+            plane.Draw();
+
+            while (true)
+            {
+
+                plane.Update();
+
+                Thread.Sleep(200);
+            }
         }
     }
 }
