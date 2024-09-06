@@ -29,9 +29,15 @@ namespace ESR_Parachutes
                         case ConsoleKey.Escape:
                             Environment.Exit(0);
                             break;
-                        case ConsoleKey.I:
-                            paratroops.Add(new Para("Bob", plane.X + Plane.View[0].Length / 2));
-                            paratroops[paratroops.Count - 1].Draw();
+                        case ConsoleKey.Spacebar:
+                            int spawnX = plane.X + Plane.View[0].Length / 2;
+                            // Prevent crashes if we spawn the paratroop out of bounds
+                            if (spawnX < Config.SCREEN_WIDTH - Para.WithoutParachute.Length && spawnX > Para.WithoutParachute.Length)
+                            {
+                                paratroops.Add(new Para("Bob", spawnX));
+                                paratroops[paratroops.Count - 1].Draw();
+                            }
+                            
                             break;
                     }
                 }
@@ -43,7 +49,7 @@ namespace ESR_Parachutes
 
                 plane.Update();
 
-                Thread.Sleep(50);
+                Thread.Sleep(75);
             }
         }
     }
