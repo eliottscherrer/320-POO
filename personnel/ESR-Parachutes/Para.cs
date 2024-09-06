@@ -97,19 +97,20 @@ namespace ESR_Parachutes
 
         public void Update()
         {
-            // Deploy parachute
-            if (Y > Config.SCREEN_HEIGHT / 2 && State == ParaState.FREE_FALL)
-            {
-                State = ParaState.FLOATING;
-                Draw();
-                return;
-            }
-            else if (State == ParaState.DEAD)
+            if (State == ParaState.DEAD)
                 return;
             // Land
             else if (Y + Sprite.Length >= Config.SCREEN_HEIGHT)
             {
                 State = ParaState.LANDED;
+                ClearSprite();
+                Draw(WithParachute.Length - WithoutParachute.Length);
+                return;
+            }
+            // Deploy parachute
+            else if (Y > Config.SCREEN_HEIGHT / 2 && State == ParaState.FREE_FALL)
+            {
+                State = ParaState.FLOATING;
                 Draw();
                 return;
             }
@@ -139,8 +140,12 @@ namespace ESR_Parachutes
 
         public void Kill()
         {
+            if (State == ParaState.LANDED || State == ParaState.DEAD)
+                return;
+
             const char BLOOD_SPLATTER = '*';
 
+            // Make the paratroop go to the ground
             ClearSprite();
             State = ParaState.DEAD;
             Draw();
@@ -154,8 +159,8 @@ namespace ESR_Parachutes
                 (X + 6, Y + 1),
             };
 
+            // Draw blood stains
             Console.ForegroundColor = ConsoleColor.Red;
-
             foreach (var (bloodX, bloodY) in bloodCoordinates)
             {
                 if (bloodX >= 0 && bloodX < Console.WindowWidth && bloodY >= 0 && bloodY < Console.WindowHeight)
@@ -164,7 +169,6 @@ namespace ESR_Parachutes
                     Console.Write(BLOOD_SPLATTER);
                 }
             }
-
             Console.ResetColor();
         }
     }
