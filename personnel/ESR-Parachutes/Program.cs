@@ -17,22 +17,33 @@ namespace ESR_Parachutes
             Plane plane = new Plane();
             plane.Draw();
 
+            List<Para> paratroops = new List<Para>();
+
             while (true)
             {
                 if(Console.KeyAvailable)
                 {
-                    ConsoleKeyInfo cki = Console.ReadKey(false);
+                    ConsoleKeyInfo cki = Console.ReadKey(true);
                     switch(cki.Key)
                     {
                         case ConsoleKey.Escape:
                             Environment.Exit(0);
                             break;
+                        case ConsoleKey.I:
+                            paratroops.Add(new Para("Bob", plane.X + Plane.View[0].Length / 2));
+                            paratroops[paratroops.Count - 1].Draw();
+                            break;
                     }
+                }
+
+                foreach(Para para in paratroops)
+                {
+                    para.Update();
                 }
 
                 plane.Update();
 
-                Thread.Sleep(200);
+                Thread.Sleep(50);
             }
         }
     }
