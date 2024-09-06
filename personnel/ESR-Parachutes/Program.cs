@@ -17,6 +17,7 @@ namespace ESR_Parachutes
             Plane plane = new Plane();
             plane.Draw();
 
+            const byte PARATROOPS_COUNT_MAX = 10;
             List<Para> paratroops = new List<Para>();
 
             while (true)
@@ -32,12 +33,22 @@ namespace ESR_Parachutes
                         case ConsoleKey.Spacebar:
                             int spawnX = plane.X + Plane.View[0].Length / 2;
                             // Prevent crashes if we spawn the paratroop out of bounds
-                            if (spawnX < Config.SCREEN_WIDTH - Para.WithoutParachute.Length && spawnX > Para.WithoutParachute.Length)
+                            if (spawnX < Config.SCREEN_WIDTH - Para.WithoutParachute.Length && spawnX > Para.WithoutParachute.Length
+                                && paratroops.Count < PARATROOPS_COUNT_MAX)
                             {
-                                paratroops.Add(new Para("Bob", spawnX));
+                                paratroops.Add(new Para("Blud" + paratroops.Count.ToString(), spawnX));
                                 paratroops[paratroops.Count - 1].Draw();
                             }
                             
+                            break;
+                        default:
+                            int numberPressed;
+                            if(int.TryParse(cki.KeyChar.ToString(), out numberPressed))
+                            {
+                                // Avoid crashes
+                                if(paratroops.Count > numberPressed)
+                                    paratroops[numberPressed].Kill();
+                            }
                             break;
                     }
                 }
