@@ -24,10 +24,10 @@ namespace ESR_Parachutes
         {
             for (int col = View[0].Length - 1; col >= 0; --col)
             {
-                Console.MoveBufferArea((X + col) % Console.WindowWidth, 0, 1, View.Length, (X + col + 1) % Console.WindowWidth, 0);
+                Console.MoveBufferArea((X + col) % Config.SCREEN_WIDTH, 0, 1, View.Length, (X + col + 1) % Config.SCREEN_WIDTH, 0);
             }
 
-            X = (X + 1) % Console.WindowWidth;
+            X = (X + 1) % Config.SCREEN_WIDTH;
         }
 
         public void Draw()
