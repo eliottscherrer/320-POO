@@ -16,14 +16,14 @@ namespace ESR_Snail
             Color = color;
             Name = name;
             MoveKey = moveKey;
-            Draw();
         }
 
-        private void Draw()
+        public void Draw()
         {
             Console.ForegroundColor = Color;
             Console.SetCursorPosition(Pos.x, Pos.y);
             Console.Write(SNAIL_SPRITE);
+            Console.ResetColor();
         }
 
         public void Move()
