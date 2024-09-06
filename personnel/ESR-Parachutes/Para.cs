@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -33,14 +34,30 @@ namespace ESR_Parachutes
             }
         }
 
-        private string[] WithoutParachute =
-       {
+        private int Speed
+        {
+            get
+            {
+                switch (State)
+                {
+                    case ParaState.FREE_FALL:
+                        return 3;
+                    case ParaState.FLOATING:
+                        return 1;
+                    default:
+                        return 0;
+                }
+            }
+        }
+
+        public static string[] WithoutParachute =
+        {
             @"  o  ",
             @" /░\ ",
             @" / \ ",
         };
 
-        private string[] WithParachute =
+        public static string[] WithParachute =
         {
              @" ___ ",
              @"/|||\",
@@ -61,9 +78,16 @@ namespace ESR_Parachutes
 
         public void Update()
         {
-            Console.MoveBufferArea(X, Y, Sprite[0].Length, Sprite.Length, X, Y + 1);
+            // Move
+            Console.MoveBufferArea(X, Y, Sprite[0].Length, Sprite.Length, X, Y + Speed);
+            Y += Speed;
 
-            Y++;
+            // Deploy parachute
+            if(Y > Config.SCREEN_HEIGHT / 2 && State == ParaState.FREE_FALL)
+            {
+                State = ParaState.FLOATING;
+                Draw();
+            } 
         }
 
         public void Draw()
