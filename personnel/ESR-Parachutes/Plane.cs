@@ -8,9 +8,9 @@ namespace ESR_Parachutes
 {
     public class Plane
     {
-        public int x { get; private set; }
+        public int X { get; private set; }
 
-        private string[] view =
+        private string[] View =
         {
             @" _                         ",
             @"| \                        ",
@@ -22,17 +22,17 @@ namespace ESR_Parachutes
 
         public void Update()
         {
-            Console.MoveBufferArea(x, 1, view[0].Length, view.Length, x + 1, 1);
+            Console.MoveBufferArea(X, 1, View[0].Length, View.Length, X + 1, 1);
 
-            x++;
+            X++;
         }
 
         public void Draw()
         {
-            for(int i = 0; i < view.Length; ++i)
+            for(int i = 0; i < View.Length; ++i)
             {
-                Console.SetCursorPosition(x, i + 1);
-                Console.Write(view[i]);
+                Console.SetCursorPosition(X, i + 1);
+                Console.Write(View[i]);
             }
         }
     }
