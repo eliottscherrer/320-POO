@@ -3,14 +3,22 @@ using System.Drawing;
 
 namespace Drones
 {
-    public partial class Building
+    public abstract partial class Building
     {
         protected readonly Brush _brush;
 
         // De manière graphique
-        public void Render(BufferedGraphics drawingSpace)
+        public virtual void Render(BufferedGraphics drawingSpace)
         {
-            drawingSpace.Graphics.FillRectangle(_buildingBrush, new Rectangle(X, Y, Width, Height));
+            drawingSpace.Graphics.FillRectangle(_brush, new Rectangle(X, Y, Width, Height));
+        }
+
+        // Dans la console
+        public virtual void Print()
+        {
+            Console.WriteLine($"Position: ({X}, {Y})");
+            Console.WriteLine($"Size: {Width}x{Height}");
+            Console.WriteLine($"Color: {Color.Name}"); // Color.Name provides a string representation of the color
         }
     }
 }

@@ -18,9 +18,8 @@ namespace Drones
 
             List<Building> Buildings = new()
             {
-                new(50, 50, 50, 50, Color.Blue),
-                new(150, 150, 75, 50, Color.Blue),
-                new(250, 250, 50, 90, Color.Blue),
+                new Factory(50, 50, 50, Color.Blue, 78.9),
+                new Store(150, 150, 75, 50, Color.Green, "Mercredi: 8h-18h"),
             };
 
             // Démarrage

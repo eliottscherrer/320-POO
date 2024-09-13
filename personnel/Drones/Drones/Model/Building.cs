@@ -2,7 +2,7 @@
 
 namespace Drones
 {
-    public partial class Building
+    public abstract partial class Building
     {
         public int X { get; private set; }                  // Position en X depuis la gauche de l'espace aérien
         public int Y { get; private set; }                  // Position en Y depuis le haut de l'espace aérien
