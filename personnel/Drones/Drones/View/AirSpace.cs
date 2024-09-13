@@ -43,18 +43,7 @@ namespace Drones
             // Draw buildings
             foreach (Building building in _buildings)
             {
-                switch (building)
-                {
-                    case Store store:
-                        store.Render(airspace);
-                        break;
-                    case Factory factory:
-                        factory.Render(airspace);
-                        break;
-                    default:
-                        building.Render(airspace);
-                        break;
-                }
+                building.Render(airspace);
             }
 
             airspace.Render();
