@@ -13,9 +13,10 @@
         // Dans la console
         public virtual void Print()
         {
-            Console.WriteLine($"Position: ({X}, {Y})");
+            Console.WriteLine("---------------------------");
+            Console.WriteLine($"Position: {Position}");
             Console.WriteLine($"Size: {Width}x{Height}");
-            Console.WriteLine($"Color: {Color.Name}"); // Color.Name provides a string representation of the color
+            Console.WriteLine($"Color: {Color.Name}");
         }
     }
 }

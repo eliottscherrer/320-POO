@@ -7,11 +7,13 @@
         public Store(int x, int y, int width, int height, Color color, string openingHours) : base(x, y, width, height, color)
         {
             OpeningHours = openingHours;
+            Print();
         }
 
         public Store(Position position, int width, int height, Color color, string openingHours) : base(position, width, height, color)
         {
             OpeningHours = openingHours;
+            Print();
         }
     }
 }
