@@ -12,7 +12,11 @@
         public override void Print()
         {
             base.Print();
-            Console.WriteLine($"Opening hours: {OpeningHours}");
+            Console.WriteLine($"Opening hours:");
+            foreach(var openingHour in OpeningHours)
+            {
+                Console.WriteLine($"\t{openingHour}");
+            }
         }
     }
 }
