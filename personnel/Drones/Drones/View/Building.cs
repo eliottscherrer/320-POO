@@ -1,7 +1,4 @@
-﻿using Drones.Helpers;
-using System.Drawing;
-
-namespace Drones
+﻿namespace Drones
 {
     public abstract partial class Building
     {
@@ -10,7 +7,7 @@ namespace Drones
         // De manière graphique
         public virtual void Render(BufferedGraphics drawingSpace)
         {
-            drawingSpace.Graphics.FillRectangle(_brush, new Rectangle(X, Y, Width, Height));
+            drawingSpace.Graphics.FillRectangle(_brush, new Rectangle(Position.X, Position.Y, Width, Height));
         }
 
         // Dans la console

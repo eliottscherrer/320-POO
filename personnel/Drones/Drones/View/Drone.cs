@@ -12,8 +12,8 @@ namespace Drones
         // De manière graphique
         public void Render(BufferedGraphics drawingSpace)
         {
-            drawingSpace.Graphics.DrawEllipse(_brush, new Rectangle(X - 4, Y - 2, 8, 8));
-            drawingSpace.Graphics.DrawString($"{this}", TextHelpers.drawFont, TextHelpers.writingBrush, X + 5, Y - 5);
+            drawingSpace.Graphics.DrawEllipse(_brush, new Rectangle(Position.X - 4, Position.Y - 2, 8, 8));
+            drawingSpace.Graphics.DrawString($"{this}", TextHelpers.drawFont, TextHelpers.writingBrush, Position.X + 5, Position.Y - 5);
         }
 
         // De manière textuelle

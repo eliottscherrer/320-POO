@@ -12,19 +12,25 @@ namespace Drones
 
         /////////////////////////////// [ VAR ] ///////////////////////////////
 
-        public string Name { get; private set; }                            // Un nom
-        public int X { get; private set; }                                  // Position en X depuis la gauche de l'espace aérien
-        public int Y { get; private set; }                                  // Position en Y depuis le haut de l'espace aérien
-        public int Charge { get; private set; }                             // La charge actuelle de la batterie
-        public int Speed { get; private set; }                              // La charge actuelle de la batterie
+        public string Name { get; private set; }
+        public Position Position { get; private set; }
+        public int Charge { get; private set; }
+        public int Speed { get; private set; }
 
         ///////////////////////////////////////////////////////////////////////
 
         public Drone(string name, int x, int y)
         {
             Name = name;
-            X = x;
-            Y = y;
+            Position = new Position(x, y);
+            Charge = DEFAULT_CHARGE;
+            Speed = DEFAULT_SPEED;
+        }
+
+        public Drone(string name, Position position)
+        {
+            Name = name;
+            Position = position;
             Charge = DEFAULT_CHARGE;
             Speed = DEFAULT_SPEED;
         }
@@ -33,8 +39,8 @@ namespace Drones
         // que 'interval' millisecondes se sont écoulées
         public void Update(int interval)
         {
-            X += Speed;
-            Y += GlobalHelpers.Rand.Next(-Speed, Speed + 1);
+            Position.X += Speed;
+            Position.Y += GlobalHelpers.Rand.Next(-Speed, Speed + 1);
             Charge--;
         }
     }
