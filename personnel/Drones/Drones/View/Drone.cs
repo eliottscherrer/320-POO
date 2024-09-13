@@ -6,12 +6,13 @@ namespace Drones
 
     public partial class Drone
     {
-        private static readonly Pen droneBrush = new(new SolidBrush(Color.Purple), 3);
+        private const int BRUSH_SIZE = 3;
+        private static readonly Pen _droneBrush = new(new SolidBrush(Color.Purple), BRUSH_SIZE);
 
         // De manière graphique
         public void Render(BufferedGraphics drawingSpace)
         {
-            drawingSpace.Graphics.DrawEllipse(droneBrush, new Rectangle(X - 4, Y - 2, 8, 8));
+            drawingSpace.Graphics.DrawEllipse(_droneBrush, new Rectangle(X - 4, Y - 2, 8, 8));
             drawingSpace.Graphics.DrawString($"{this}", TextHelpers.drawFont, TextHelpers.writingBrush, X + 5, Y - 5);
         }
 
