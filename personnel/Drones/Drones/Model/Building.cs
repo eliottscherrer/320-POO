@@ -18,7 +18,7 @@ namespace Drones
             Width = width;
             Height = height;
             Color = color;
-            _buildingBrush = new SolidBrush(Color);
+            _brush = new SolidBrush(Color);
         }
     }
 }

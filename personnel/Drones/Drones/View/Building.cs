@@ -5,7 +5,7 @@ namespace Drones
 {
     public partial class Building
     {
-        private readonly Brush _buildingBrush;
+        protected readonly Brush _brush;
 
         // De manière graphique
         public void Render(BufferedGraphics drawingSpace)
