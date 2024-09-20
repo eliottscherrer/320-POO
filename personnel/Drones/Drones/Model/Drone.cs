@@ -7,7 +7,7 @@ namespace Drones
     {
         ////////////////////////////// [ CONST ] //////////////////////////////
 
-        private const int DEFAULT_CHARGE = 1000;
+        public const int DEFAULT_CHARGE = 1000;
         private const int DEFAULT_SPEED = 2;
 
         /////////////////////////////// [ VAR ] ///////////////////////////////
@@ -15,6 +15,7 @@ namespace Drones
         public string Name { get; private set; }
         public Position Position { get; private set; }
         public int Charge { get; private set; }
+        public bool LowBattery { get; private set; } = false;
         public int Speed { get; private set; }
 
         ///////////////////////////////////////////////////////////////////////
@@ -42,6 +43,10 @@ namespace Drones
             Position.X += Speed;
             Position.Y += GlobalHelpers.Rand.Next(-Speed, Speed + 1);
             Charge--;
+
+            // Quand le drone est à moins de 20% de sa charge complète, la battery est basse
+            if (Charge < DEFAULT_CHARGE / 5 && !LowBattery)
+                LowBattery = true;
         }
     }
 }
