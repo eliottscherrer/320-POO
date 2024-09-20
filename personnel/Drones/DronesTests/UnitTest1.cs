@@ -15,7 +15,7 @@ namespace DronesTest
             drone = new Drone("test", new Position(50, 50));
 
             // Assert
-            Assert.AreEqual(1000, drone.Charge, "La charge du drone doit ï¿½tre de 1000");
+            Assert.AreEqual(1000, drone.Charge, "La charge du drone doit être de 1000");
         }
 
         [TestMethod]
@@ -29,7 +29,7 @@ namespace DronesTest
             drone.Update(1);
 
             // Assert
-            Assert.IsTrue(initialCharge > drone.Charge, "La charge du drone doit rï¿½duire aprï¿½s une update");
+            Assert.IsTrue(initialCharge > drone.Charge, "La charge du drone doit réduire après une update");
         }
 
         [TestMethod]
@@ -39,13 +39,27 @@ namespace DronesTest
             Drone drone = new Drone("test", new Position(50, 50));
 
             // Action
-            // On update le drone jusqu'ï¿½ ce qu'il soit ï¿½ moins de 20% de sa charge complï¿½te
+            // On update le drone jusqu'à ce qu'il soit à moins de 20% de sa charge complète
             while (drone.Charge < Drone.DEFAULT_CHARGE / 5)
                 drone.Update(1);
 
             // Assert
-            Assert.IsTrue(drone.LowBattery, "La propriï¿½tï¿½ `Lowbattery` du drone est `true` quand la charge est plus petite que 20");
+            Assert.IsTrue(drone.LowBattery, "La propriété `Lowbattery` du drone est `true` quand la charge est plus petite que 20");
         }
+
+        [TestMethod]
+        public void Drone_Update_NoEffectWhenBatteryIsZero()
+        {
+            // Arrange
+            Drone drone = new Drone("test", new Position(50, 50));
+
+            // Action
+            // On update le drone jusqu'à qu'il soit à moins de 20% de sa charge complète
+            while (drone.Charge < Drone.DEFAULT_CHARGE / 5)
+                drone.Update(1);
+
+            // Assert
+            Assert.IsTrue(drone.LowBattery, "La propriété `Lowbattery` du drone est `true` quand la charge est plus petite que 20");
         }
     }
 }
