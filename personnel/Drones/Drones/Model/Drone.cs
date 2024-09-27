@@ -17,6 +17,7 @@ namespace Drones
         public int Charge { get; private set; }
         public bool LowBattery { get; private set; }
         public int Speed { get; private set; }
+        private EvacuationState EvacuationState { get; set; }
 
         ///////////////////////////////////////////////////////////////////////
 
@@ -27,6 +28,7 @@ namespace Drones
             Charge = DEFAULT_CHARGE;
             LowBattery = false;
             Speed = DEFAULT_SPEED;
+            EvacuationState = EvacuationState.Free;
         }
 
         public Drone(string name, Position position)
@@ -36,6 +38,7 @@ namespace Drones
             Charge = DEFAULT_CHARGE;
             LowBattery = false;
             Speed = DEFAULT_SPEED;
+            EvacuationState = EvacuationState.Free;
         }
 
         // Cette méthode calcule le nouvel état dans lequel le drone se trouve après
