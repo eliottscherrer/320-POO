@@ -75,5 +75,7 @@ namespace Drones
         {
             throw new NotImplementedException();
         }
+
+        public void FreeFlight() => EvacuationState = EvacuationState.Free;
     }
 }
