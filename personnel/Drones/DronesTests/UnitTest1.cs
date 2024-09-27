@@ -56,7 +56,7 @@ namespace DronesTest
             // Action
             // Drain the battery to 0
             while (drone.Charge > 0)
-                drone.Update(1);
+                drone.Update(100);
 
             // Store the position and charge before attempting another update
             Position lastPosition = drone.Position;

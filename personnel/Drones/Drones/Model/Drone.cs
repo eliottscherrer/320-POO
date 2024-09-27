@@ -15,7 +15,7 @@ namespace Drones
         public string Name { get; private set; }
         public Position Position { get; private set; }
         public int Charge { get; private set; }
-        public bool LowBattery { get; private set; } = false;
+        public bool LowBattery { get; private set; }
         public int Speed { get; private set; }
 
         ///////////////////////////////////////////////////////////////////////
@@ -25,6 +25,7 @@ namespace Drones
             Name = name;
             Position = new Position(x, y);
             Charge = DEFAULT_CHARGE;
+            LowBattery = false;
             Speed = DEFAULT_SPEED;
         }
 
@@ -33,6 +34,7 @@ namespace Drones
             Name = name;
             Position = position;
             Charge = DEFAULT_CHARGE;
+            LowBattery = false;
             Speed = DEFAULT_SPEED;
         }
 
