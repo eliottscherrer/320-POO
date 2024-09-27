@@ -3,7 +3,7 @@
 namespace Drones
 {
     // Cette partie de la classe Drone définit ce qu'est un drone par un modèle numérique
-    public partial class Drone
+    public partial class Drone : IExpellable
     {
         ////////////////////////////// [ CONST ] //////////////////////////////
 
@@ -50,6 +50,21 @@ namespace Drones
             // Quand le drone est à moins de 20% de sa charge complète, la battery est basse
             if (Charge < DEFAULT_CHARGE / 5 && !LowBattery)
                 LowBattery = true;
+        }
+
+        public bool Evacuate(Rectangle zone)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void FreeFlight()
+        {
+            throw new NotImplementedException();
+        }
+
+        public EvacuationState GetEvacuationState()
+        {
+            throw new NotImplementedException();
         }
     }
 }
