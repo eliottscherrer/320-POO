@@ -74,7 +74,7 @@ namespace DronesTest
         public void Test_that_drone_is_taking_orders()
         {
             // Arrange
-            Drone drone = new Drone("test", 500, 500);
+            Drone drone = new Drone("test", new Position(500, 500));
 
             // Act
             EvacuationState state = drone.GetEvacuationState();

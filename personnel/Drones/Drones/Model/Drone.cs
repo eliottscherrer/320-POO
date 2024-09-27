@@ -21,22 +21,12 @@ namespace Drones
 
         ///////////////////////////////////////////////////////////////////////
 
-        public Drone(string name, int x, int y)
+        public Drone(string name, Position? position = null)
         {
             Name = name;
-            Position = new Position(x, y);
+            // If no position is provided, make it 0, 0 at default
+            Position = position ?? new Position(0, 0);
             Charge = DEFAULT_CHARGE;
-            LowBattery = false;
-            Speed = DEFAULT_SPEED;
-            EvacuationState = EvacuationState.Free;
-        }
-
-        public Drone(string name, Position position)
-        {
-            Name = name;
-            Position = position;
-            Charge = DEFAULT_CHARGE;
-            LowBattery = false;
             Speed = DEFAULT_SPEED;
             EvacuationState = EvacuationState.Free;
         }

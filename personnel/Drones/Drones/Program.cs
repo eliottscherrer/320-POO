@@ -13,7 +13,7 @@ namespace Drones
             // Création de la flotte de drones
             List<Drone> Fleet = new()
             {
-                new("Joe", 100, 100)
+                new("Joe", new Position(100, 100))
             };
 
             List<Building> Buildings = new()
