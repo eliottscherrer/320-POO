@@ -18,7 +18,7 @@ namespace Drones
         public int Charge { get; private set; }
         public bool LowBattery => Charge < LOW_BATTERY_THRESHOLD;
         public int Speed { get; private set; }
-        private EvacuationState EvacuationState { get; set; }
+        private EvacuationState _EvacuationState { get; set; }
 
         ///////////////////////////////////////////////////////////////////////
 
@@ -29,7 +29,7 @@ namespace Drones
             Position = position ?? new Position(0, 0);
             Charge = DEFAULT_CHARGE;
             Speed = DEFAULT_SPEED;
-            EvacuationState = EvacuationState.Free;
+            _EvacuationState = EvacuationState.Free;
         }
 
         // Update drone state after 'interval' milliseconds
@@ -56,7 +56,7 @@ namespace Drones
 
             if (isInsideZone)
             {
-                EvacuationState = EvacuationState.Evacuating;
+                _EvacuationState = EvacuationState.Evacuating;
 
                 // Update position to try and move out of the zone
                 Position.X += (Position.X < zone.X) ? -Speed : (Position.X > (zone.X + zone.Width) ? Speed : 0);
@@ -66,7 +66,7 @@ namespace Drones
                 if (Position.X < zone.X || Position.X > (zone.X + zone.Width) ||
                     Position.Y < zone.Y || Position.Y > (zone.Y + zone.Height))
                 {
-                    EvacuationState = EvacuationState.Evacuated;
+                    _EvacuationState = EvacuationState.Evacuated;
                     return true;
                 }
 
@@ -75,12 +75,12 @@ namespace Drones
             }
 
             // If already outside, return true and update the state
-            EvacuationState = EvacuationState.Evacuated;
+            _EvacuationState = EvacuationState.Evacuated;
             return true;
         }
 
-        public void FreeFlight() => EvacuationState = EvacuationState.Free;
+        public void FreeFlight() => _EvacuationState = EvacuationState.Free;
 
-        public EvacuationState GetEvacuationState() => EvacuationState;
+        public EvacuationState GetEvacuationState() => _EvacuationState;
     }
 }
