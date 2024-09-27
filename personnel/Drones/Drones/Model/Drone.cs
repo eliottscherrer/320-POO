@@ -45,12 +45,15 @@ namespace Drones
             // Don't update if the drone's charge is depleted
             if (Charge <= 0) return;
 
+            // Move
             Position.X += Speed;
             Position.Y += GlobalHelpers.Rand.Next(-Speed, Speed + 1);
-            Charge--;
 
-            // Quand le drone est à moins de 20% de sa charge complète, la battery est basse
-            if (Charge < DEFAULT_CHARGE / 5 && !LowBattery)
+            // Decrease charge
+            Charge -= interval / 100;
+
+            // If charge is below 20%, LowBattery mode activates
+            if (Charge < DEFAULT_CHARGE / 5)
                 LowBattery = true;
         }
 
