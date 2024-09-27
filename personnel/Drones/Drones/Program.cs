@@ -11,16 +11,16 @@ namespace Drones
             ApplicationConfiguration.Initialize();
 
             // Création de la flotte de drones
-            List<Drone> Fleet = new()
-            {
+            List<Drone> Fleet =
+            [
                 new("Joe", new Position(100, 100))
-            };
+            ];
 
-            List<Building> Buildings = new()
-            {
+            List<Building> Buildings =
+            [
                 new Factory(new Position(50, 50), 50, Color.Blue, 78.9),
-                new Store(new Position(150, 150), 75, Color.Green, new List<string> { "Lundi: 8h-18h", "Mardi: 8h-18h", "Mercredi: 8h-18h" }),
-            };
+                new Store(new Position(150, 150), 75, Color.Green, [ "Lundi: 8h-18h", "Mardi: 8h-18h", "Mercredi: 8h-18h" ]),
+            ];
 
             // Démarrage
             Application.Run(new AirSpace(Fleet, Buildings));
