@@ -77,5 +77,7 @@ namespace Drones
         }
 
         public void FreeFlight() => EvacuationState = EvacuationState.Free;
+
+        public EvacuationState GetEvacuationState() => EvacuationState;
     }
 }
