@@ -51,6 +51,7 @@ namespace Drones
 
             // Decrease charge
             Charge -= interval / 100;
+            if (Charge < 0) Charge = 0;
 
             // If charge is below 20%, LowBattery mode activates
             if (Charge < DEFAULT_CHARGE / 5)
