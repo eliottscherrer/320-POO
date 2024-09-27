@@ -32,20 +32,17 @@ namespace Drones
             EvacuationState = EvacuationState.Free;
         }
 
-        // Cette méthode calcule le nouvel état dans lequel le drone se trouve après
-        // que 'interval' millisecondes se sont écoulées
+        // Update drone state after 'interval' milliseconds
         public void Update(int interval)
         {
-            // Don't update if the drone's charge is depleted
             if (Charge <= 0) return;
 
-            // Move
+            // Update position based on speed
             Position.X += Speed;
             Position.Y += GlobalHelpers.Rand.Next(-Speed, Speed + 1);
 
             // Decrease charge
-            Charge -= interval / 100;
-            if (Charge < 0) Charge = 0;
+            Charge = Math.Max(Charge - interval / 100, 0);
         }
 
         public bool Evacuate(Rectangle zone)
