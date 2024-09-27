@@ -25,8 +25,8 @@ namespace DronesTest
             Drone drone = new("test", new Position(50, 50));
 
             // Action
-            int initialCharge = drone.Charge;
-            drone.Update(1);
+            float initialCharge = drone.Charge;
+            drone.Update(100);
 
             // Assert
             Assert.IsTrue(initialCharge > drone.Charge, "La charge du drone doit réduire après une update");
@@ -60,7 +60,7 @@ namespace DronesTest
 
             // Store the position and charge before attempting another update
             Position lastPosition = drone.Position;
-            int lastCharge = drone.Charge;
+            float lastCharge = drone.Charge;
 
             drone.Update(1);
 

@@ -15,7 +15,7 @@ namespace Drones
 
         public string Name { get; private set; }
         public Position Position { get; private set; }
-        public int Charge { get; private set; }
+        public float Charge { get; private set; }
         public bool LowBattery => Charge < LOW_BATTERY_THRESHOLD;
         public int Speed { get; private set; }
         private EvacuationState _EvacuationState { get; set; }
