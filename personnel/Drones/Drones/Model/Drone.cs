@@ -42,8 +42,8 @@ namespace Drones
         // que 'interval' millisecondes se sont écoulées
         public void Update(int interval)
         {
-            // Si le drone n'a plus de batterie on update pas
-            if (Charge >= 0) return;
+            // Don't update if the drone's charge is depleted
+            if (Charge <= 0) return;
 
             Position.X += Speed;
             Position.Y += GlobalHelpers.Rand.Next(-Speed, Speed + 1);
