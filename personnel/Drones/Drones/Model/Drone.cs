@@ -63,17 +63,36 @@ namespace Drones
 
         public bool Evacuate(Rectangle zone)
         {
-            throw new NotImplementedException();
-        }
+            // If the drone has no charge, it cannot evacuate
+            if (Charge <= 0) return false;
 
-        public void FreeFlight()
-        {
-            throw new NotImplementedException();
-        }
+            // Check if the drone is inside the no-fly zone
+            bool isInsideZone = Position.X >= zone.X && Position.X <= (zone.X + zone.Width) &&
+                                Position.Y >= zone.Y && Position.Y <= (zone.Y + zone.Height);
 
-        public EvacuationState GetEvacuationState()
-        {
-            throw new NotImplementedException();
+            if (isInsideZone)
+            {
+                EvacuationState = EvacuationState.Evacuating;
+
+                // Update position to try and move out of the zone
+                Position.X += (Position.X < zone.X) ? -Speed : (Position.X > (zone.X + zone.Width) ? Speed : 0);
+                Position.Y += (Position.Y < zone.Y) ? -Speed : (Position.Y > (zone.Y + zone.Height) ? Speed : 0);
+
+                // Check if the drone is now outside the zone
+                if (Position.X < zone.X || Position.X > (zone.X + zone.Width) ||
+                    Position.Y < zone.Y || Position.Y > (zone.Y + zone.Height))
+                {
+                    EvacuationState = EvacuationState.Evacuated;
+                    return true;
+                }
+
+                // Still inside the zone even after update
+                return false;
+            }
+
+            // If already outside, return true and update the state
+            EvacuationState = EvacuationState.Evacuated;
+            return true;
         }
 
         public void FreeFlight() => EvacuationState = EvacuationState.Free;
