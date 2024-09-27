@@ -9,13 +9,14 @@ namespace Drones
 
         public const int DEFAULT_CHARGE = 1000;
         private const int DEFAULT_SPEED = 2;
+        private const int LOW_BATTERY_THRESHOLD = DEFAULT_CHARGE / 5;
 
         /////////////////////////////// [ VAR ] ///////////////////////////////
 
         public string Name { get; private set; }
         public Position Position { get; private set; }
         public int Charge { get; private set; }
-        public bool LowBattery { get; private set; }
+        public bool LowBattery => Charge < LOW_BATTERY_THRESHOLD;
         public int Speed { get; private set; }
         private EvacuationState EvacuationState { get; set; }
 
@@ -45,10 +46,6 @@ namespace Drones
             // Decrease charge
             Charge -= interval / 100;
             if (Charge < 0) Charge = 0;
-
-            // If charge is below 20%, LowBattery mode activates
-            if (Charge < DEFAULT_CHARGE / 5)
-                LowBattery = true;
         }
 
         public bool Evacuate(Rectangle zone)
