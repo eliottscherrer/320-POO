@@ -22,7 +22,7 @@ namespace DronesTest
         public void Drone_Update_ReducesBatteryCharge()
         {
             // Arrange
-            Drone drone = new Drone("test", new Position(50, 50));
+            Drone drone = new("test", new Position(50, 50));
 
             // Action
             int initialCharge = drone.Charge;
@@ -36,7 +36,7 @@ namespace DronesTest
         public void Drone_BatteryBelow20Percent_LowBatteryIsTrue()
         {
             // Arrange
-            Drone drone = new Drone("test", new Position(50, 50));
+            Drone drone = new("test", new Position(50, 50));
 
             // Action
             // Quickly reduce the battery to below 20%
@@ -51,7 +51,7 @@ namespace DronesTest
         public void Drone_Update_NoEffectWhenBatteryIsZero()
         {
             // Arrange
-            Drone drone = new Drone("test", new Position(50, 50));
+            Drone drone = new("test", new Position(50, 50));
 
             // Action
             // Drain the battery to 0
@@ -74,7 +74,7 @@ namespace DronesTest
         public void Test_that_drone_is_taking_orders()
         {
             // Arrange
-            Drone drone = new Drone("test", new Position(500, 500));
+            Drone drone = new("test", new Position(500, 500));
 
             // Act
             EvacuationState state = drone.GetEvacuationState();
