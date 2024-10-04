@@ -15,17 +15,9 @@ namespace Drones
         public readonly int ID;                                     // Unique identifier
         private int _timeSinceLastProduction;                       // In milliseconds
         public double PowerConsumption { get; private set; }        // Nombre de KwH/jour
+        public readonly Dispatch Dispatch;
 
         ///////////////////////////////////////////////////////////////////////////////
-        
-        public Factory(int x, int y, int size, Color color, double powerConsumption) : base(x, y, size, size, color)
-        {
-            ID = _factoryCounter++;
-            PowerConsumption = powerConsumption;
-            _timeSinceLastProduction = 0;
-
-            Print();
-        }
 
         public Factory(Position position, int size, Color color, double powerConsumption) : base(position, size, size, color)
         {
