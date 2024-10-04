@@ -14,7 +14,6 @@ namespace Drones
         // La flotte est l'ensemble des drones qui évoluent dans notre espace aérien
         private readonly List<Drone> _fleet;
         private readonly List<Building> _buildings;
-        private readonly Dispatch _dispatch;
 
         private readonly BufferedGraphicsContext currentContext;
         private readonly BufferedGraphics airspace;
@@ -30,7 +29,6 @@ namespace Drones
             airspace = currentContext.Allocate(CreateGraphics(), DisplayRectangle);
             _fleet = fleet;
             _buildings = buildings;
-            _dispatch = new Dispatch();
         }
 
         // Affichage de la situation actuelle

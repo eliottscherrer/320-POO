@@ -18,7 +18,7 @@ namespace Drones
 
             List<Building> Buildings =
             [
-                new Factory(new Position(50, 50), 50, Color.Blue, 78.9),
+                new Factory(new Position(50, 50), 50, Color.Blue, 78.9, new Dispatch()),
                 new Store(new Position(150, 150), 75, Color.Green, [ "Lundi: 8h-18h", "Mardi: 8h-18h", "Mercredi: 8h-18h" ]),
             ];
 

@@ -19,11 +19,12 @@ namespace Drones
 
         ///////////////////////////////////////////////////////////////////////////////
 
-        public Factory(Position position, int size, Color color, double powerConsumption) : base(position, size, size, color)
+        public Factory(Position position, int size, Color color, double powerConsumption, Dispatch dispatch) : base(position, size, size, color)
         {
             ID = _factoryCounter++;
             PowerConsumption = powerConsumption;
             _timeSinceLastProduction = 0;
+            Dispatch = dispatch;
 
             Print();
         }
@@ -38,6 +39,8 @@ namespace Drones
                 Box newBox = new Box();
                 Console.WriteLine($"Factory {ID} produced box" +
                                         $"\n\t{newBox}");
+
+                Dispatch.AddBox(newBox);
 
                 _timeSinceLastProduction = 0;
             }
