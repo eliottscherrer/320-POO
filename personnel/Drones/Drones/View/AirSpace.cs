@@ -1,3 +1,5 @@
+using System;
+
 namespace Drones
 {
     // La classe AirSpace représente le territoire au dessus duquel les drones peuvent voler
@@ -52,6 +54,12 @@ namespace Drones
         // Calcul du nouvel état après que 'interval' millisecondes se sont écoulées
         private void Update(int interval)
         {
+            foreach (Building building in _buildings)
+            {
+                if(building is Factory factory)
+                    factory.Update(interval);
+            }
+
             foreach (Drone drone in _fleet)
             {
                 drone.Update(interval);
