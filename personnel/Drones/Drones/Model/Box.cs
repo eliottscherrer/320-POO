@@ -26,7 +26,5 @@ namespace Drones
             Weight = GlobalHelpers.Rand.Next(MIN_WEIGHT, MAX_WEIGHT + 1);       // Random weight between 5 and 10 kilos.
             Color = _colors[GlobalHelpers.Rand.Next(_colors.Length)];
         }
-
-        public override string ToString() => $"Box ID: {ID}, Weight: {Weight} kg, Color: {Color}";
     }
 }
