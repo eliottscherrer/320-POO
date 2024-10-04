@@ -4,19 +4,29 @@ namespace Drones
 {
     public class Dispatch : IDispatchable
     {
-        public void AddBox(Box box)
+        private readonly List<Box> _producedBoxes;
+
+        public Dispatch()
         {
-            throw new NotImplementedException();
+            _producedBoxes = new List<Box>();
         }
 
-        public List<Box> GetBoxes()
+        public void AddBox(Box box)
         {
-            throw new NotImplementedException();
+            _producedBoxes.Add(box);
+            Console.WriteLine($"Dispatch received:" +
+                                    $"\n\t{box}");
         }
 
         public void RemoveBox(Box box)
         {
-            throw new NotImplementedException();
+            if (_producedBoxes.Contains(box))
+            {
+                _producedBoxes.Remove(box);
+                Console.WriteLine($"Box {box.ID} removed from Dispatch");
+            }
         }
+
+        public List<Box> GetBoxes() => _producedBoxes;
     }
 }
