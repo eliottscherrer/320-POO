@@ -1,12 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Drones.Model;
 
-namespace Drones.Model
+namespace Drones
 {
-    internal class Dispatch
+    public class Dispatch : IDispatchable
     {
+        public void AddBox(Box box)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Box> GetBoxes()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveBox(Box box)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
