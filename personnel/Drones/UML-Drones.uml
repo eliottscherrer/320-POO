@@ -1,0 +1,99 @@
+@startuml
+class Box {
+   - const MIN_WEIGHT : int
+   - const MAX_WEIGHT : int
+   - static _idCounter : int
+   - static readonly _colors : Color[]
+   + readonly ID : int
+   + Weight : double
+   + Color : Color
+   + Box()
+}
+
+abstract class Building {
+   + Position : Position
+   + Width : int
+   + Height : int
+   - Color : Color
+   # Building(int, int, int, int, Color)
+   # Building(Position, int, int, Color)
+}
+
+class Dispatch {
+   - _producedBoxes : List<Box>
+   + Dispatch()
+   + AddBox(Box)
+   + RemoveBox(Box)
+   + GetBoxes() : List<Box>
+}
+
+class Drone {
+   + const DEFAULT_CHARGE : int
+   - const DEFAULT_SPEED : int
+   - const LOW_BATTERY_THRESHOLD : int
+   + Name : string
+   + Position : Position
+   + Charge : float
+   + LowBattery : bool
+   + Speed : int
+   - _EvacuationState : EvacuationState
+   + Drone(string, Position?)
+   + Update(int)
+   + Evacuate(Rectangle) : bool
+   + FreeFlight()
+   + GetEvacuationState() : EvacuationState
+}
+
+class Factory extends Building {
+   + const MINIMUM_PRODUCTION_INTERVAL : int
+   + const MAXIMUM_INTERVAL_VARIATION : int
+   - static _factoryCounter : int
+   + readonly ID : int
+   - _timeSinceLastProduction : int
+   + PowerConsumption : double
+   + readonly Dispatch : Dispatch
+   + Factory(Position, int, Color, double, Dispatch)
+   + Update(int)
+}
+
+interface IDispatchable {
+   + AddBox(Box)
+   + RemoveBox(Box)
+   + GetBoxes() : List<Box>
+}
+
+enum EvacuationState {
+   Free
+   Evacuating
+   Evacuated
+}
+
+interface IExpellable {
+   + Evacuate(Rectangle) : bool
+   + FreeFlight()
+   + GetEvacuationState() : EvacuationState
+}
+
+class Position {
+   + X : int
+   + Y : int
+   + Position(int, int)
+   + ToString() : string
+}
+
+class Store extends Building {
+   + OpeningHours : List<string>
+   + Store(int, int, int, Color, List<string>)
+   + Store(Position, int, Color, List<string>)
+}
+
+Box --> Dispatch : uses
+Factory --> Dispatch : uses
+Drone ..|> IExpellable
+Dispatch ..|> IDispatchable
+Drone --> EvacuationState : uses
+Drone --> Position : uses
+Building --> Position : uses
+Store --> Position : uses
+Factory --> Position : uses
+@enduml
